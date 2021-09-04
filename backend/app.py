@@ -68,9 +68,9 @@ def delete_show(id):
 @app.route("/shows/<id>", methods=['GET'])   #part 2, get a single show that has the id provided from the request
 def get_single_show(id):
     if db.getById('shows', int(id)) is None:
-        return create_response(status=404, message="No show with this id exists")
-    return create_response({"<id>": db.get('<id>')})
-    
+        return create_response(status=404, message="No show with this id exists")       #works :)
+    return create_response(db.getById('shows', int(id)))        #getById(type, id) works :) wanted to do create_response(({"id": db.getById('shows',int(id))})) but that returns too much data
+                                                                #result is in a different order- episodes seen is above id, i don't think this will make a diffrence but we'll see
 
 """
 ~~~~~~~~~~~~ END API ~~~~~~~~~~~~
