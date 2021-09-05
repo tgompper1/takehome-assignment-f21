@@ -94,9 +94,14 @@ def new_show():
     db.create('shows', request_data)
     return create_response(db.getById('shows', request_data['id']), status=201, message="show added") 
     
-    
-    
-
+# part 4 update show
+@app.route("/shows/<id>", methods=['PUT'])
+def update_show(id):
+    if db.getById('shows', int(id)) is None:
+        return create_response(status=404, message="No show with this id exists") #works 
+    request_data = request.get_json()
+    db.updateById('shows', int(id), request_data)      
+    return create_response(db.getById('shows', int(id)))
 
 
 """
