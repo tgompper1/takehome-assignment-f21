@@ -87,10 +87,6 @@ def new_show():
         episodes_seen = request_data['episodes_seen']
     except:
         return create_response(status=422, message = "Please provide number of episodes seen")
-    #if request_data['name'] is None:
-     #   return create_response(status=422, message = "PLease provide a show name")
-    #if request_data['episodes_seen'] is None:
-    #   return create_response(status=422, message = "Please provide number of episodes seen")
     db.create('shows', request_data)
     return create_response(db.getById('shows', request_data['id']), status=201, message="show added") 
     
