@@ -12,7 +12,9 @@
 <script>
 export default {
   // PART 1: Add a "complete" prop here
-  props: {}
+  props: {
+    complete: Boolean         // https://vuejs.org/v2/guide/components-props.html#Prop-Types 
+  }   
 };
 </script>
 
