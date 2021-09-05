@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>Current count: {{initial_count}}</p> 
+    <p>Episodes watched: {{initial_count}}</p> 
     <button v-on:click="initial_count+=1">increment</button>
     <button v-on:click="initial_count-=1" v-if="initial_count>0" >decrement</button> 
   </div>  
@@ -23,5 +23,10 @@ export default {
 </script>
 
 <style>
+  button{
+    background-color:#eb8686;
+    color: #fff;
+    border-radius: 10px;
+  }
 </style>
 

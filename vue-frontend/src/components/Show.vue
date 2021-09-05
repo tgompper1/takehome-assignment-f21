@@ -1,7 +1,7 @@
 <template>
   <!-- PART 4: Add your code here -->
-  <div>
-    {{name}}
+  <div id="container">
+    <h4>{{name}}</h4>
     <Counter v-bind:initial_count="episodes_seen"></Counter>
   </div>
 </template>
@@ -24,4 +24,8 @@ export default {
 </script>
 
 <style>
+h4{
+  margin-top: 25px;
+  font-weight: bold;
+}
 </style>

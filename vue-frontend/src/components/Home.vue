@@ -10,6 +10,8 @@
       :name="show.name"
       :episodes_seen="show.episodes_seen"
     />
+    <!--<input v-model="new_show" placeholder="New Show Name">-->
+    <!--<button >Submit</button>-->
   </div>
 </template>
 
