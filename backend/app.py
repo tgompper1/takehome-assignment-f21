@@ -65,12 +65,39 @@ def delete_show(id):
 
 # TODO: Implement the rest of the API here!
 
-@app.route("/shows/<id>", methods=['GET'])   #part 2, get a single show that has the id provided from the request
+# part 2, get a single show that has the id provided from the request
+@app.route("/shows/<id>", methods=['GET'])   
 def get_single_show(id):
     if db.getById('shows', int(id)) is None:
-        return create_response(status=404, message="No show with this id exists")       #works :)
-    return create_response(db.getById('shows', int(id)))        #getById(type, id) works :) wanted to do create_response(({"id": db.getById('shows',int(id))})) but that returns too much data
-                                                                #result is in a different order- episodes seen is above id, i don't think this will make a diffrence but we'll see
+        return create_response(status=404, message="No show with this id exists")       # works :)
+    return create_response(db.getById('shows', int(id)))        # getById(type, id) works :) 
+                                                                # result is in a different order- episodes seen is above id, i don't think this will make a diffrence but we'll see
+
+# part 3, create a new show
+# https://www.poftut.com/python-try-catch-exceptions-tutorial/
+# https://www.educba.com/flask-get-post-data/ !! super helpful
+@app.route("/shows", methods=['POST'])
+def new_show():
+    request_data = request.get_json()
+    try:
+        name = request_data['name']
+    except:
+        return create_response(status=422, message = "PLease provide a show name")
+    try:
+        episodes_seen = request_data['episodes_seen']
+    except:
+        return create_response(status=422, message = "Please provide number of episodes seen")
+    #if request_data['name'] is None:
+     #   return create_response(status=422, message = "PLease provide a show name")
+    #if request_data['episodes_seen'] is None:
+    #   return create_response(status=422, message = "Please provide number of episodes seen")
+    db.create('shows', request_data)
+    return create_response(db.getById('shows', request_data['id']), status=201, message="show added") 
+    
+    
+    
+
+
 
 """
 ~~~~~~~~~~~~ END API ~~~~~~~~~~~~
